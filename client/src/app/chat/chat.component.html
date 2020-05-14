@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <nav id="sidebar" *ngIf="toggleSidebar">
+        <div class="sidebar-header">
+            <h3>{{ username }}</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p id="chats">Chats</p>
+            <li *ngFor="let t of topics">
+                <a  (click)="changeTopic(t)">{{t}}</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="content">
+            <div class="container-fluid">
+                <h4> {{topics[topic]}}</h4>
+                <div id="chat">
+                    <div id="chat-window">
+                        <div id="output">
+                            <p *ngFor="let m of getMessages()" >
+                                    <strong> {{m.sender}} : </strong> {{m.message}}
+                            </p>
+                        </div>
+                    </div>
+                    <input type="text" id="message" placeholder="Message" [(ngModel)]="messageTyped.message">
+                    <button id="send" (click)="sendMessage()">send</button>
+                </div>
+            </div>
+    </div>
+
+</div>
